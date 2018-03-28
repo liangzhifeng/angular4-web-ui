@@ -1,0 +1,26 @@
+{
+  "name": "web-ui",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "An enterprise-class UI components based on Angular4",
+  "scripts": {
+  },
+  "keywords": [
+    "angular",
+    "ui",
+    "framework",
+    "frontend"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liangzhifeng/angular4-web-ui.git"
+  },
+  "bugs": {
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "peerDependencies": {
+  }
+}
