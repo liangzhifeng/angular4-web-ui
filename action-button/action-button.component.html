@@ -1,0 +1,10 @@
+<div (click)="toggle()">
+  <gh-button [theme]="theme" class="button-face" [size]="size">
+    <gh-icon *ngIf="icon" class="icon-inside-button" name="{{icon}}" size="{{iconSize}}"></gh-icon>{{label}}
+  </gh-button>
+
+  <div class="button-drop" [@openState]="openState"
+      [ngClass]="position">
+    <ng-content></ng-content>
+  </div>
+</div>

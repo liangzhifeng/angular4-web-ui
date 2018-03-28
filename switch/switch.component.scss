@@ -1,0 +1,62 @@
+@import '../../styles/mixin';
+
+:host {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.switch {
+  @include hoverCursor;
+  display: inline-block;
+  position: relative;
+  width: $switch-size;
+  height: $switch-size;
+  vertical-align: middle;
+
+  &.on {
+    .switch-indicator {
+      background: #8BC9F2;
+    }
+
+    .switch-thumb {
+      background: $blue;
+      left: $switch-size - $switch-thumb-size;
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+
+    .switch-indicator {
+      background: $disabled-grey;
+    }
+
+    .switch-thumb {
+      background: #C0C0C0;
+      box-shadow: none;
+      left: $switch-size - $switch-thumb-size;
+    }
+  }
+}
+
+.switch-indicator {
+  background: $disabled-grey;
+  position: absolute;
+  top: ($switch-size - $switch-bar-height) /2;
+  left: ($switch-size - $switch-bar-width) / 2;
+  border-radius: $switch-bar-height / 2;
+  width: $switch-bar-width;
+  height: $switch-bar-height;
+}
+
+.switch-thumb {
+  border-radius: 50%;
+  background: $white;
+  box-shadow: 0 1px 2px rgba(0, 0 ,0, .3);
+  position: absolute;
+  width: $switch-thumb-size;
+  height: $switch-thumb-size;
+  top: ($switch-size - $switch-thumb-size) / 2;
+  left: 0;
+  transition: left $animation-fast $animation-func;
+}

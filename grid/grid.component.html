@@ -1,0 +1,115 @@
+<div class="gridwrap" [ngStyle]="{'min-height': minHeight}">
+  <table *ngIf="total > 0" [ngClass]="['data-grid',theme]"
+         [ngStyle]="{'table-layout': tableLayout, 'white-space': noWrap? 'nowrap':''}">
+    <thead>
+    <tr class="grid-header" (mouseover)="headerOver()" (mouseout)="headerOut()">
+      <th *ngIf="allowMultiSelect"
+          class="grid-select">
+        <label class="form-checkbox" [ngClass]="{'visible': isAllSelected() || isHeaderHover}">
+          <input type="checkbox"
+                 [checked]="isAllSelected()"
+                 (change)="toggleSelectAll()">
+          <span [ngClass]="{'checked': isAllSelected()}">
+              <gh-icon *ngIf="isAllSelected()" name="check"></gh-icon>
+          </span>
+        </label>
+      </th>
+
+      <th *ngFor="let column of columns"
+          [ngStyle]="{'width':column.width}">
+        {{column.title}}
+
+        <gh-icon class="grid-sort" *ngIf="column.sortable" (click)="toggleSort(column)"
+                 [name]="getSortStatus(column)"></gh-icon>
+      </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let row of dataset; let i = index"
+        (mouseover)="rowOver(row)"
+        (mouseout)="rowOut(row)">
+      <td *ngIf="allowMultiSelect"
+          class="grid-select">
+        <label class="form-checkbox" [ngClass]="{'visible': row.selected || row.hovered}">
+          <input type="checkbox"
+                 [checked]="row.selected"
+                 (change)="toggleRow(row)">
+          <span [ngClass]="{'checked': row.selected}"><gh-icon *ngIf="row.selected" name="check"></gh-icon></span>
+        </label>
+      </td>
+      <td *ngFor="let column of columns">
+        <span *ngIf="!column.template">{{row[column.name]}}</span>
+
+        <ng-template *ngIf="column.template"
+                     [ngTemplateOutlet]="column.template"
+                     [ngTemplateOutletContext]="{ data: row, column: column, index: i }">
+        </ng-template>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="grid-empty" *ngIf="total === 0 && !isFetching">
+    <ng-container *ngIf="networkError">
+      {{getErrorMsg()}}
+    </ng-container>
+
+    <ng-container *ngIf="!networkError">
+      <ng-template *ngIf="emptyTemplate"
+                   [ngTemplateOutlet]="emptyTemplate">
+      </ng-template>
+      <ng-container *ngIf="!emptyTemplate">
+        {{getErrorMsg()}}
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+
+<div *ngIf="isFetching" class="grid-loading">
+  <gh-loading theme="dark"></gh-loading>
+</div>
+
+<footer *ngIf="total> 0" class="grid-footer">
+  <div class="left">
+    <!--<span class="mr20">-->
+    <!--显示 {{pageItemStart}} - {{pageItemEnd}}条记录，共 {{total}}条记录-->
+    <!--</span>-->
+
+    <!--<div class="page-size-wrapper" *ngIf="!noPager">-->
+    <!--每页-->
+    <!--<gh-drop-down class="form-control page-size"-->
+    <!--[optionList]="pageNumList"-->
+    <!--[ngModel]="pageSize"-->
+    <!--(ngModelChange)="pageSizeChange($event)"-->
+    <!--&gt;</gh-drop-down>-->
+    <!--条记录-->
+    <!--</div>-->
+  </div>
+
+  <div *ngIf="!noPager" class="right">
+    <!--<span *ngIf="pageRange[0] > 1 " class="page-link text" (click)="setPage(1)">-->
+    <!--首页-->
+    <!--</span>-->
+
+    <span class="page-link text" (click)="prevPage()"
+          [ngClass]="{'disabled': pageIndex === 1}">
+      <gh-icon name="caratleft"></gh-icon>
+    </span>
+
+    <span class="page-link"
+          *ngFor="let page of pageRange"
+          [ngClass]="{'current': pageIndex === page }"
+          (click)="setPage(page)"
+    >{{page}}</span>
+
+    <span class="page-link text" (click)="nextPage()"
+          [ngClass]="{'disabled':pageIndex === totalPage}">
+      <gh-icon name="caratright"></gh-icon>
+    </span>
+
+    <!--<span *ngIf="pageRange.slice(-1) < totalPage " class="page-link text" (click)="setPage(totalPage)">-->
+    <!--末页-->
+    <!--</span>-->
+  </div>
+</footer>

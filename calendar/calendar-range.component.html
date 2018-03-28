@@ -1,0 +1,7 @@
+<gh-calendar #calendarStart class="calendar-range" [hideIcon]="true" placeholder="起始日"
+             [(ngModel)]="startDate" (ngModelChange)="startDateChange()">
+</gh-calendar>
+<div class="conjunction">至</div>
+<gh-calendar #calendarEnd class="calendar-range" [hideIcon]="true" placeholder="结束日"
+             [(ngModel)]="endDate" (ngModelChange)="endDateChange()" position="right">
+</gh-calendar>

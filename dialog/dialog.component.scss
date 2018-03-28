@@ -1,0 +1,70 @@
+/**
+ * Dialog
+ */
+
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+:host {
+  @include modal;
+
+  min-width: 400px;
+  color: $text-color-modal;
+}
+
+.dialog-content {
+  max-height: 90vh;
+  max-width: 90vw;
+  overflow: hidden;
+  padding: 20px 18px;
+  background: #fff;
+
+  &.img-viewer {
+    background: transparent;
+  }
+
+  .preview-close {
+
+    color: #fff;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    position: absolute;
+      right: 0;
+      top: 0;
+      width: 25px;
+      height: 25px;
+
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 25px;
+
+    cursor: pointer;
+  }
+}
+
+.dialog-header {
+  background: #fff;
+  font-size: 18px;
+  @include flexCenter;
+  padding: 18px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.dialog-title-icon {
+  font-weight: 300;
+  margin-right: .5rem;
+  vertical-align: -.1em;
+}
+
+.dialog-close-icon {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.dialog-footer {
+  text-align: right;
+  padding: 14px 18px;
+  background: #f5f5f5;
+}

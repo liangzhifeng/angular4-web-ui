@@ -1,0 +1,96 @@
+/**
+ * Button
+ */
+
+@import '../../styles/mixin';
+
+.btn-primary-blue {
+  @include button;
+  @include getTheme(primary-blue);
+}
+
+.btn-primary-black {
+  @include button;
+  @include getTheme(primary-black);
+}
+
+.btn-primary-green {
+  @include button;
+  @include getTheme(primary-green);
+}
+
+.btn-hollow-blue {
+  @include button;
+  @include getTheme(hollow-blue);
+}
+
+.btn-hollow-black {
+  @include button;
+  @include getTheme(hollow-black);
+}
+
+.btn-link {
+  @include button;
+  @include getTheme(link);
+  padding: 0;
+}
+
+.btn-link-gray {
+  @include button;
+  @include getTheme(link-gray);
+  padding: 0;
+}
+
+.size-large {
+  height: $button-height-lg;
+  line-height: $button-height-lg;
+}
+
+.size-x-large {
+  height: $button-height-x-lg;
+  line-height: $button-height-x-lg;
+}
+
+//.btn-success {
+//  @include button;
+//  @include getTheme(success);
+//}
+//
+//.btn-primary {
+//  @include button;
+//  @include getTheme(primary);
+//}
+//
+//.btn-cancel {
+//  @include button;
+//  @include getTheme(cancel);
+//}
+//
+//.btn-warning {
+//  @include button;
+//  @include getTheme(warning);
+//}
+//
+//.btn-plain {
+//  @include button;
+//  @include getTheme(plain);
+//}
+//
+//.btn-error {
+//  @include button;
+//  @include getTheme(error);
+//}
+
+:host {
+  button[disabled] {
+    @include getTheme(disabled);
+  }
+}
+
+:host {
+  .btn-link[disabled] {
+    @include getTheme(disabled-link);
+  }
+}
+
+

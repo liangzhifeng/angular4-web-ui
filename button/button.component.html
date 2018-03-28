@@ -1,0 +1,6 @@
+<button [ngClass]="['btn-'+theme, 'size-' + size]"
+        [disabled]="disabled"
+        [ngStyle]="{'width':width}"
+  [type]="getButtonType()">
+  <ng-content></ng-content>
+</button>

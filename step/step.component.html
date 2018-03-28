@@ -1,0 +1,7 @@
+<ul class="steps">
+  <li *ngFor="let step of steps;let i = index"
+    [ngClass]="{'active': currentStep == i + 1}" (click)="stepChange(i+1)">
+    <p class="title">{{step.title}}</p>
+    <p class="desc">{{step.desc}}</p>
+  </li>
+</ul>

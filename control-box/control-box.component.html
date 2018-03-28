@@ -1,0 +1,9 @@
+<div class="form-input-container" [ngClass]="{'invalid': invalid}">
+  <h4>{{title}} <span *ngIf="showAsterisk" class="asterisk">*</span></h4>
+  <ng-content></ng-content>
+  <p [hidden]="!invalid"
+     [ngStyle]="{'width': errorWidth}"
+     class="validator warning">
+    {{errorMsg}}
+  </p>
+</div>

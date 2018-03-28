@@ -1,0 +1,31 @@
+<div *ngIf="title"
+     class="dialog-header">
+  <gh-icon [name]="icon" class="mr10"></gh-icon>
+
+  <p>{{title}}</p>
+
+  <gh-button *ngIf="!showCancel"
+             class="dialog-close-icon"
+             (click)="close()">
+    <gh-icon name="close"></gh-icon>
+  </gh-button>
+</div>
+
+<div class="dialog-content" [ngClass]="{'img-viewer': imgPreview}">
+  <ng-content></ng-content>
+  <!--<span class="preview-close" *ngIf="imgPreview" (click)="close()">&times;</span>-->
+</div>
+
+<div *ngIf="showConfirm || showCancel"
+     class="dialog-footer">
+
+  <gh-button *ngIf="showCancel"
+             theme="link-gray"
+             class="mr10"
+             (click)="close()">{{cancelText}}</gh-button>
+
+  <gh-button *ngIf="showConfirm"
+             theme="primary-blue"
+             [disabled]="disabled"
+             (click)="confirmDialog()">{{confirmText}}</gh-button>
+</div>

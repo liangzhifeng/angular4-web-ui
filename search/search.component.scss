@@ -1,0 +1,31 @@
+/**
+ * Search
+ */
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+.search-form {
+  @include flexCenter;
+  flex-wrap: nowrap;
+  width: $form-control-width-lg;
+  //min-width: $form-control-width-lg;
+  overflow: auto;
+
+  input {
+    border-right: 0;
+    flex: 1;
+  }
+}
+
+.btn-search {
+  @include hoverCursor;
+  background: $blue;
+  border-width: 0;
+  font-size: 20px;
+  text-align: center;
+  color: $white;
+  width: $form-control-height-lg;
+  height: $form-control-height-lg;
+  line-height: $form-control-height-lg;
+  transform: rotate(270deg);
+}

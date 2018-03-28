@@ -1,0 +1,10 @@
+<nav class="tab-header">
+  <a *ngFor="let tab of tabs"
+     class="tab-link"
+     [ngClass]="{ active: tab.active }"
+     (click)="open(tab)">{{tab.titleName}}</a>
+</nav>
+
+<div class="tab-content">
+  <ng-content></ng-content>
+</div>

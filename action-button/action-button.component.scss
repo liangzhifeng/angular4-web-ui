@@ -1,0 +1,44 @@
+/*
+ * Dropdown Button
+ */
+
+@import '../../styles/mixin';
+
+:host {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+
+  &.opened {
+    overflow: visible;
+  }
+}
+
+.button-face {
+  @include hoverCursor;
+}
+
+.button-drop {
+  background: #fff;
+  border: 1px solid $form-border-color;
+  margin-top: 10px;
+  position: absolute;
+  top: 100%;
+  z-index: $layer-drop;
+
+  &.left {
+    left: 0;
+  }
+
+  &.right {
+    right: 0;
+  }
+
+  &.center {
+    left: -50%;
+  }
+
+  &.opened {
+    display: block;
+  }
+}

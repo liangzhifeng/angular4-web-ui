@@ -1,0 +1,29 @@
+/**
+ * Calendar
+ */
+
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+:host {
+  display: flex;
+  align-items: center;
+}
+
+.calendar-range {
+  flex: 1;
+  height: $form-control-height-lg;
+  text-align: center;
+}
+
+.conjunction {
+  //color: $text-color-placeholder;
+  line-height: $form-control-height-lg;
+  height: $form-control-height-lg;
+  padding: 0 .5em;
+  background: #f8f8f8;
+  border: 1px solid $form-border-color;
+  box-sizing: border-box;
+}
+
+

@@ -1,0 +1,32 @@
+/**
+ * Input File Button
+ */
+
+@import '../../styles/mixin';
+
+:host {
+
+}
+
+.input-file {
+  @include button;
+  @include getTheme(primary-blue);
+  position: relative;
+  text-align: center;
+
+  input[type=file]{
+    @include absolute;
+    @include hoverCursor;
+    opacity: 0;
+  }
+}
+
+.size-large {
+  height: $button-height-lg;
+  line-height: $button-height-lg;
+}
+
+.size-x-large {
+  height: $button-height-x-lg;
+  line-height: $button-height-x-lg;
+}

@@ -1,0 +1,74 @@
+<div class="gridwrap" [ngStyle]="{'min-height': minHeight}">
+
+  <div *ngFor="let row of dataset; let i = index">
+    <ng-template *ngIf="template"
+                 [ngTemplateOutlet]="template"
+                 [ngTemplateOutletContext]="{ data: row, column: column, index: i }">
+    </ng-template>
+  </div>
+
+  <div class="grid-empty" *ngIf="total === 0 && !isFetching">
+    <ng-container *ngIf="networkError">
+      {{getErrorMsg()}}
+    </ng-container>
+
+    <ng-container *ngIf="!networkError">
+      <ng-template *ngIf="emptyTemplate"
+                   [ngTemplateOutlet]="emptyTemplate">
+      </ng-template>
+      <ng-container *ngIf="!emptyTemplate">
+        {{getErrorMsg()}}
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+
+<div *ngIf="isFetching" class="grid-loading">
+  <gh-loading theme="dark"></gh-loading>
+</div>
+
+<footer *ngIf="total> 0" class="grid-footer">
+  <div class="left">
+    <span class="mr20">
+    {{translation.Common.Control.List.Show}} {{pageItemStart}} - {{pageItemEnd}}{{translation.Common.Control.List.Records}}，
+      {{translation.Common.Control.List.Total}} {{total}} {{translation.Common.Control.List.Records}}
+    </span>
+
+    <div class="page-size-wrapper" *ngIf="!noPager">
+      {{translation.Common.Control.List.PageShow}}
+      <gh-drop-down class="form-control page-size"
+                    [optionList]="pageNumList"
+                    [ngModel]="pageSize"
+                    (ngModelChange)="pageSizeChange($event)"
+      ></gh-drop-down>
+    </div>
+  </div>
+
+  <div *ngIf="!noPager" class="right">
+    <span *ngIf="pageRange[0] > 1 " class="page-link text" (click)="setPage(1)">
+      <gh-icon name="caratleft"></gh-icon>
+      <gh-icon name="caratleft"></gh-icon>
+    </span>
+
+    <span class="page-link text" (click)="prevPage()"
+          [ngClass]="{'disabled': pageIndex === 1}">
+      <gh-icon name="caratleft"></gh-icon>
+    </span>
+
+    <span class="page-link"
+          *ngFor="let page of pageRange"
+          [ngClass]="{'current': pageIndex === page }"
+          (click)="setPage(page)"
+    >{{page}}</span>
+
+    <span class="page-link text" (click)="nextPage()"
+          [ngClass]="{'disabled':pageIndex === totalPage}">
+      <gh-icon name="caratright"></gh-icon>
+    </span>
+
+    <span *ngIf="pageRange.slice(-1)[0] < totalPage " class="page-link text" (click)="setPage(totalPage)">
+      <gh-icon name="caratright"></gh-icon>
+      <gh-icon name="caratright"></gh-icon>
+    </span>
+  </div>
+</footer>

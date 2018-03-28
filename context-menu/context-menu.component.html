@@ -1,0 +1,9 @@
+<div (click)="toggle()">
+  <gh-button [theme]="theme" class="button-face">
+    {{label}} <gh-icon *ngIf="icon" name="{{icon}}"></gh-icon>
+  </gh-button>
+
+  <div #contextMenu [ngStyle]="{'width': width}" class="button-drop" [@openState]="openState">
+    <ng-content></ng-content>
+  </div>
+</div>

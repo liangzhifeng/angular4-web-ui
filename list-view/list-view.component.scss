@@ -1,0 +1,93 @@
+/**
+ * List View
+ */
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+:host {
+  position: relative;
+  display: block;
+  //overflow: visible;
+  min-width: 900px;
+  //overflow: auto;
+}
+
+// table外层div产生滚动条
+.gridwrap {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 10px;
+  background: $white;
+  border: 1px solid #E0E0E0;
+}
+
+.grid-empty {
+  //border-top: 1px dashed $form-border-color;
+  text-align: center;
+  color: $grid-empty-text-color;
+  font-size: $grid-empty-text-size;
+  padding-top: 70px;
+}
+
+.grid-loading {
+  @include absolute;
+  background: rgba(255, 255, 255, .5);
+}
+
+.grid-footer {
+  display: flex;
+  align-items: center;
+  color: $text-color-label;
+
+  .left {
+    display: flex;
+    align-items: center;
+    //width: 500px;
+  }
+
+  .right {
+    text-align: right;
+    flex: 1;
+    font-size: 0;
+
+    //span:last-of-type {
+    //  border-right-width: 1px;
+    //}
+  }
+
+  .page-link {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    min-width: 30px;
+    text-align: center;
+    cursor: pointer;
+    font-size: $text-size-base;
+    user-select: none;
+
+    &.current {
+      color: $blue;
+      cursor: default;
+    }
+
+    &.text {
+      padding: 0 .5em;
+    }
+
+    &.disabled {
+      color: #909090;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.page-size-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.page-size {
+  display: inline-block;
+  width: 60px;
+  margin: 0 10px;
+}

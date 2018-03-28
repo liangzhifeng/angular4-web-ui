@@ -1,0 +1,18 @@
+<div class="dropdown-face" [ngClass]="['size-' + size, theme]"
+     (click)="toggleDropdown()">
+  <p>{{getLabelText()}}</p>
+
+  <gh-icon *ngIf="theme==='normal'" name="caratdown"></gh-icon>
+  <gh-icon *ngIf="theme==='hollow-black'" name="triangledownfill"></gh-icon>
+  <gh-icon *ngIf="theme==='primary-blue'" name="triangledownfill"></gh-icon>
+</div>
+
+<div class="dropdown-panel"
+     [@openState]="openState">
+  <ul *ngIf="optionList && optionList.length" class="dropdown-list">
+    <li *ngFor="let item of optionList"
+        class="dropdown-item"
+        [ngClass]="{ 'selected': item.value === value }"
+        (click)="select(item)">{{item.text}}</li>
+  </ul>
+</div>

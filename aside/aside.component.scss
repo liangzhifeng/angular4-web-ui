@@ -1,0 +1,37 @@
+/**
+ * Dialog-X
+ */
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+:host {
+  position: fixed;
+  background: $aside-bg;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding-left: $aside-margin;
+  pointer-events: none;
+
+  overflow: auto;
+  opacity: 0;
+  z-index: $layer-surface;
+  transform: translate3d(100%, 0, 0);
+  transition: all $animation-fast $animation-func;
+
+  &.opened {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate3d(0, 0, 0);
+    z-index: $layer-aside;
+  }
+
+}
+
+.modal-close-icon {
+  @include hoverCursor;
+  font-size: 30px;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}

@@ -1,0 +1,8 @@
+<ul class="list" *ngIf="options && options.length">
+  <li *ngFor="let option of options;"
+      [ngStyle]="{width: itemWidth}"
+      [ngClass]="{'active' : option.value === value , 'isBorder': borderBoolean}"
+      (click)="select(option)">
+      {{option.text}}
+  </li>
+</ul>

@@ -1,0 +1,46 @@
+/**
+ * Message
+ */
+@import '../../styles/mixin';
+
+:host {
+  @include message;
+  border: 1px solid transparent;
+  z-index: 0;
+  opacity: 0;
+  transform: translate3d(0, 100%, 0);
+  transition: all $animation-slow $animation-func;
+
+  .icon {
+    text-align: center;
+    color: #fff;
+    display: inline-block;
+    width: $message-height;
+    height: $message-height;
+    font-size: 18px;
+  }
+
+  &.opened {
+    opacity: 1;
+    z-index: $layer-message;
+    transform: translate3d(0, 0, 0);
+  }
+
+  &.error {
+    border: 1px solid $message-color-error;
+    top:auto;
+
+    .icon {
+      background: $message-color-error;
+    }
+  }
+
+  &.success {
+    border-color: $message-color-success;
+    top:auto;
+
+    .icon {
+      background: $green;
+    }
+  }
+}

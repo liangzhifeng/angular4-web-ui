@@ -1,0 +1,76 @@
+/**
+ * Tooltip
+ */
+
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+:host {
+  color: $text-color-label;
+  background: $white;
+  border: 1px solid $form-border-color-disabled;
+  font-size: $text-size-tooltip;
+  box-shadow: 0 .0625rem .125rem rgba(0, 0, 0, .3);
+  border-radius: 2px;
+  padding: 4px .5em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $layer-message;
+  max-width: $form-control-width;
+  line-height: 1;
+  //white-space: nowrap;
+
+  &.dark {
+    background: #000;
+    color: $white;
+  }
+
+  &:before {
+    background: inherit;
+    border: 2px solid $form-border-color-disabled;
+    content: '';
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    transform-origin: 0 0;
+    transform: rotate(45deg);
+    border-top-width: 0;
+    border-left-width: 0;
+    z-index: $layer-hidden;
+  }
+
+  &.default {
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -100%);
+
+    &:before {
+      bottom: -5px;
+      left: 50%;
+    }
+  }
+
+  &.right {
+    transform: translateY(-50%);
+
+    &:before {
+      left: -2px;
+      top: 50%;
+      border-left-width: 2px;
+      border-right-width: 0;
+      transform: translateY(-50%) rotate(45deg);
+    }
+  }
+
+  &.left {
+    transform: translate(-100%, - 50%);
+
+    &:before {
+      right: -2px;
+      top: 50%;
+      transform-origin: 100% 0;
+      transform: translateY(-50%) rotate(-45deg);
+    }
+  }
+}

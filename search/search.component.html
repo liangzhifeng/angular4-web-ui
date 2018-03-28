@@ -1,0 +1,10 @@
+<form (submit)="onSearch()" class="search-form" [ngStyle]="{'width':width}">
+  <input type="text"
+         class="form-control-lg"
+         name="keyword"
+         maxlength="{{maxLength}}"
+         autocomplete="off"
+         [placeholder]="placeholder"
+         [(ngModel)]="keyword">
+  <gh-icon name="magify" class="btn-search" (click)="onSearch()"></gh-icon>
+</form>

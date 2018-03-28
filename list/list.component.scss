@@ -1,0 +1,40 @@
+/**
+  * List
+ */
+@import '../../styles/mixin';
+
+:host {
+  display: block;
+}
+
+.list {
+  display: inline-block;
+
+  li:last-of-type {
+    border-right-width: 1px;
+  }
+
+  li {
+    display: inline-block;
+    background: $white;
+    color: $text-color-label;
+    height: $form-control-height-lg;
+    line-height: $form-control-height-lg;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid $form-border-color;
+    border-right-width: 0;
+    padding: 0 6px;
+    @include ellipsis;
+
+    &.active {
+      background: $blue;
+      color: $white;
+      border-color: $blue;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

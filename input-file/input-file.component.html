@@ -1,0 +1,7 @@
+<div [ngClass]="['input-file', 'size-' + size]"
+     [ngStyle]="{'width':width}">
+  <ng-content></ng-content>
+  <input #input type="file" [ngStyle]="{'width':width}"
+         (change)="onFileChange()" [accept]="acceptExtensions">
+</div>
+

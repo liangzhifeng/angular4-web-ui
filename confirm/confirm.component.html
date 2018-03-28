@@ -1,0 +1,9 @@
+<gh-dialog #dialog
+           icon="info"
+           [title]="title"
+           [confirmText]="confirmText"
+           [cancelText]="cancelText"
+           (confirm)="confirm()">
+  <div class="confirm-content"
+       [innerHTML]="content"></div>
+</gh-dialog>

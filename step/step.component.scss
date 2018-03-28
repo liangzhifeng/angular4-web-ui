@@ -1,0 +1,94 @@
+/**
+ * Step
+ */
+
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+.steps {
+
+  display: flex;
+  padding: 20px 0;
+  user-select: none;
+  cursor: default;
+  li {
+    flex: 1;
+    font-size: 12px;
+  }
+
+  li.active {
+    font-weight:bold;
+    .down::after {
+      background: $blue;
+      box-shadow: 0 0 0 4px rgba($blue,.2);
+      box-sizing: border-box;
+      top: -17px;
+      cursor: default;
+    }
+  }
+
+  .title {
+    height: 15px;
+    font-size: 10px;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  .desc {
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      height: 4px;
+      width: 100%;
+      top: -11px;
+      left: 4px;
+      background: rgba($blue,.2);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      left: 50%;
+      background: #fff;
+      top: -19px;
+      box-sizing: content-box;
+      border: 3px solid rgba($blue,.2);
+      cursor: pointer;
+      border-radius: 50%;
+      transform: translateX(-50%);
+    }
+
+    font-size: 10px;
+    text-align: center;
+  }
+
+  li:first-of-type{
+    .up {
+      text-align: left;
+    }
+
+    .down::before {
+      left: 4px;
+    }
+
+    .down::after {
+      left: 12px;
+    }
+  }
+
+  li:last-of-type {
+    .up {
+      text-align: right;
+    }
+
+    .down::after {
+      left: unset;
+      right: -16px;
+    }
+  }
+
+  //border-bottom: 1px dashed #979797;
+}

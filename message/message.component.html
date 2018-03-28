@@ -1,0 +1,7 @@
+<div [ngClass]="{'success': messageType === messageTypeEnum.SUCCESS,
+  'error': messageType === messageTypeEnum.ERROR}">
+  <span class="icon mr20">
+    <gh-icon [name]="getIcon()"></gh-icon>
+  </span>
+  {{messageContent}}
+</div>

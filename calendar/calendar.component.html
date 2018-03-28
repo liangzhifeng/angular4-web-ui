@@ -1,0 +1,86 @@
+<div class="calendar-face"
+     (click)="toggle()">
+  <span *ngIf="value">{{getDateTimeString()}}</span>
+  <span [hidden]="value" class="placeholder">{{placeholder}}</span>
+  <gh-icon *ngIf="!hideIcon" size="20" name="calendar"></gh-icon>
+</div>
+
+<div class="calendar"
+     [@openState]="openState"
+     [ngClass]="position">
+  <header class="calendar-header">
+    <gh-icon name="caratleft" (click)="prev()"></gh-icon>
+
+    <div (click)="setContentType()">{{getContentTypeLabel()}}</div>
+
+    <gh-icon name="caratright" (click)="next()"></gh-icon>
+  </header>
+
+  <section class="calendar-content" [ngSwitch]="calendar.panelType">
+    <div *ngSwitchCase="PanelType.DAY">
+      <ul class="day-names">
+        <li>日</li>
+        <li>一</li>
+        <li>二</li>
+        <li>三</li>
+        <li>四</li>
+        <li>五</li>
+        <li>六</li>
+      </ul>
+      <ul *ngFor="let week of getCalendarDays()" class="calendar-days">
+        <li *ngFor="let v of week"
+            [ngClass]="{'old': v.old_day, 'new': v.new_day, 'normal': v.normal,
+              'current': value && isCurrentDay(v.date)}"
+              (click)="setCurrentDate($event, v.date)">
+          {{v.date.getDate()}}
+        </li>
+      </ul>
+      <div *ngIf="showTime" class="day-time">
+        <div class="time-item">
+          <gh-icon name="caratup" (click)="hourIncrease()"></gh-icon>
+
+          <input type="text" maxlength="2"
+                 [ngModel]="currentHour"
+                 (input)="hourValidate($event)">
+
+          <gh-icon name="caratdown" (click)="hourDecrease()"></gh-icon>
+
+          <span class="comma">:</span>
+        </div>
+        <div class="time-item">
+          <gh-icon name="caratup" (click)="minuteIncrease()"></gh-icon>
+
+          <input type="text" maxlength="2"
+                 [ngModel]="currentMinute"
+                 (input)="minuteValidate($event)">
+
+          <gh-icon name="caratdown" (click)="minuteDecrease()"></gh-icon>
+        </div>
+      </div>
+    </div>
+    <div *ngSwitchCase="PanelType.MONTH">
+      <ul *ngFor="let quarter of getCalendarMonths()" class="calendar-months">
+        <li *ngFor="let m of quarter"
+            (click)="setCurrentMonth($event, m.month)">
+          {{m.text}}
+        </li>
+      </ul>
+    </div>
+    <div *ngSwitchCase="PanelType.YEAR">
+      <ul *ngFor="let quarter of getCalendarYears()" class="calendar-years">
+        <li *ngFor="let y of quarter"
+            (click)="setCurrentYear($event, y)">
+          {{y}}
+        </li>
+      </ul>
+    </div>
+    <div *ngSwitchDefault>
+      {{calendar.panelType}}
+    </div>
+  </section>
+
+  <footer class="calendar-footer">
+    <div (click)="clear()">清除</div>
+    <div (click)="setToday()">今天</div>
+  </footer>
+</div>

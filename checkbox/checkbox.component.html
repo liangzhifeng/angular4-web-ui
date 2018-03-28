@@ -1,0 +1,7 @@
+<label class="checkbox" (click)="toggleCheck()" [ngClass]="{'disabled': disabled}">
+  <span [ngClass]="{'checked': value}">
+      <gh-icon *ngIf="value" name="check"></gh-icon>
+  </span>
+
+  <ng-content></ng-content>
+</label>

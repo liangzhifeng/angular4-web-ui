@@ -1,0 +1,235 @@
+/**
+ * Calendar
+ */
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+:host {
+  display: block;
+  overflow: hidden;
+  position: relative;
+
+  &.opened {
+    overflow: visible;
+    border-color: $blue;
+  }
+}
+
+.calendar-face {
+  position: relative;
+  @include form-control;
+  @include ellipsis;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  line-height: $form-control-height-lg;
+
+  :host.disabled /deep/ & {
+    cursor: not-allowed;
+  }
+
+  gh-icon {
+    position: absolute;
+    right: 10px;
+    top: 0;
+  }
+
+  .placeholder {
+    color: $text-color-placeholder;
+  }
+}
+
+.calendar-range-face {
+  position: relative;
+  @include ellipsis;
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  :host.disabled /deep/ & {
+    cursor: not-allowed;
+  }
+
+  .date-input {
+    flex: 1;
+    width: 50%;
+    line-height: $form-control-height;
+    height: $form-control-height;
+  }
+
+  .date-to {
+    color: $text-color-placeholder;
+    display: inline-block;
+    line-height: $form-control-height;
+    height: $form-control-height;
+    padding: 0 .5em;
+    background: #f8f8f8;
+    border-left: 1px solid $form-border-color;
+    border-right: 1px solid $form-border-color;
+  }
+
+  span:nth-of-type(1) {
+    cursor: pointer;
+  }
+
+  span:nth-of-type(2) {
+    cursor: pointer;
+  }
+
+}
+
+.calendar {
+  background: #fff;
+  border: 1px solid #dfdfdf;
+  position: absolute;
+  top: 150%;
+  padding: 10px;
+  user-select: none;
+  width: 270px;
+  z-index: $layer-drop;
+
+  &.left {
+    left: 0;
+
+    &::after {
+      left: 10%;
+    }
+  }
+
+  &.right {
+    right: 0;
+
+    &::after {
+      right: 10%;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #dfdfdf;
+    border-bottom: 0;
+    border-right: 0;
+    content: '';
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    top: -5px;
+  }
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  cursor: pointer;
+
+  gh-icon {
+    width: 18px;
+    text-align: center;
+  }
+
+  div {
+    text-align: center;
+    flex: auto;
+  }
+}
+
+.calendar-content {
+  padding: 10px 0;
+}
+
+.calendar-footer {
+  display: flex;
+
+  div {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 400;
+  }
+}
+
+.day-names, .calendar-days {
+  display: flex;
+
+  li {
+    width: $calendar-day-width;
+    height: $calendar-day-width;
+    padding-top: 10px;
+    text-align: center;
+    border-bottom: 2px solid transparent;
+  }
+}
+
+.calendar-days {
+  li {
+    &.old, &.new {
+      color: #dfdfdf;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.current {
+      border-radius: 50%;
+      background: $blue;
+      color: #fff;
+    }
+
+    &.normal {
+      &:hover {
+        border-bottom-color: $blue;
+      }
+    }
+  }
+}
+
+.calendar-months, .calendar-years {
+  display: flex;
+  align-items: center;
+
+  li {
+    flex: 1;
+    padding: 15px 0;
+    text-align: center;
+    cursor: pointer;
+  }
+}
+
+.day-time {
+  align-items: center;
+  border-top: 1px solid $form-border-color;
+  border-bottom: 1px solid $form-border-color;
+  display: flex;
+  justify-content: center;
+}
+
+.time-item {
+  flex: 1;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+
+  gh-icon {
+    display: block;
+    text-align: center;
+    @include hoverCursor;
+  }
+
+  input {
+    width: 55px;
+    text-align: center;
+    border: 1px solid $form-border-color;
+    padding-left: 0;
+  }
+
+  .comma {
+    position: absolute;
+    right: 0;
+    top: 22px;
+  }
+}
+
+

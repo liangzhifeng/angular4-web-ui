@@ -1,0 +1,15 @@
+@import '../../styles/mixin';
+
+:host {
+  display: block;
+}
+
+.radio-list {
+  display: inline-block;
+
+  li {
+    display: inline-block;
+    text-align: center;
+    margin-right: 15px;
+  }
+}

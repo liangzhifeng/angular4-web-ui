@@ -1,0 +1,10 @@
+<div class="form-input-container" [ngClass]="{'invalid': invalid}">
+  <h4>{{title}} <span *ngIf="showAsterisk" class="asterisk">*</span></h4>
+  <input name="{{name}}" type="{{inputType}}"
+         [required]="required" [(ngModel)]="value"
+         placeholder="{{placeHolder}}" maxlength="{{maxLength}}">
+  <p [hidden]="!invalid"
+     class="validator warning">
+    {{errorMsg}}
+  </p>
+</div>

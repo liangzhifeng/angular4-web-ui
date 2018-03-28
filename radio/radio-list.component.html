@@ -1,0 +1,11 @@
+<ul class="radio-list" *ngIf="options.length">
+  <li *ngFor="let option of options;">
+    <label class="form-radio" (click)="toggleCheck(option)">
+      <span class="outer-circle">
+        <span *ngIf="value === option.value" class="inner-circle"></span>
+      </span>
+
+      {{option.text}}
+    </label>
+  </li>
+</ul>
